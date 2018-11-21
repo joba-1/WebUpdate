@@ -1,5 +1,5 @@
 # WebUpdate
-Minimal sketch running a webserver for firmware updates
+Minimal sketch running a webserver for its firmware updates on an ESP8266
 
 ## Required Hardware
 Runs on an ESP8266 (e.g. a NodeMCU)
@@ -12,7 +12,7 @@ Runs on an ESP8266 (e.g. a NodeMCU)
 * TODO: You can define *CONTROL_PIN* to control the connection process
 
 ## WLAN
-* You define *SSID* and *PASS* (in WlanConfig.h or build flags or ...)
+* You define *SSID* and *PASS* (in $HOME/include/WlanConfig.h or build flags or ...)
 * Also define *NAME* and *PORT* to be used as hostname:httpservice
 * The device will use DHCP to get an IP address once connected to the WLAN
 * The device will show up on your network as `http://$NAME.local`
@@ -23,5 +23,9 @@ Once connected to the wlan you can update the firmware
 with a browser or a web cli tool, e.g. with firmware file firmware.bin: 
 ```
 curl -vF 'image=@firmware.bin' $NAME.local:$PORT/update
+```
+Or simply build and update the firmware with PlatformIO target *upload*:
+```
+pio run --target upload
 ```
 Have fun!
